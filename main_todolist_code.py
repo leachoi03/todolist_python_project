@@ -145,21 +145,21 @@ def alarm():
                 main_hour = main_hour1
         if int(alarm_hour) == int(main_hour) and int(alarm_minutes) == int(main_minutes) and main_time2 == alarm_time2:
                 for i in range(3):
-                        alarm_status_label.config(text='--알람 종료--')
+                        alarm_status_label.configure(text='--알람 종료--')
                         if platform.system() == 'Windows':
                                 winsound.Beep(5000,1000)
                         elif platform.system() == 'Darwin':
                                 os.system('say Time is Up')
                         elif platform.system() == 'Linux':
                                 os.system('beep -f 5000')
-                get_alarm_time_entry.config(state='enabled')
-                set_alarm_button.config(state='enabled')
+                get_alarm_time_entry.configure(state=NORMAL)
+                set_alarm_button.configure(state=NORMAL)
                 get_alarm_time_entry.delete(0,END)
                 alarm_status_label.config(text = '')
         else:
-                alarm_status_label.config(text='~알람 시작~')
-                get_alarm_time_entry.config(state='disabled')
-                set_alarm_button.config(state='disabled')
+                alarm_status_label.configure(text='~알람 시작~')
+                get_alarm_time_entry.configure(state=DISABLED)
+                set_alarm_button.configure(state=DISABLED)
         alarm_status_label.after(1000, alarm)
 
 
@@ -326,15 +326,15 @@ def get_chart():
 
 ######### 알람 기능 ##########
 get_alarm_time_entry = tk.Entry(alarm_tab, bg = "#D4AC0D", font ='calibri 25 bold')
-get_alarm_time_entry.pack(pady=15, anchor='center')
+get_alarm_time_entry.pack(anchor='center')
 
 alarm_instructions_label = tk.Label(alarm_tab, font = 'calibri 20 bold', text = """Enter Alarm Time. Eg -> 01:30 PM, 
 01 -> Hour, 30 -> Minutes""")
 alarm_instructions_label.pack(anchor='s')
 
-set_alarm_button = tk.Button(alarm_tab, text = "알람 설정", relief = "solid", fg="Black", bg="#D4AC0D", width = 20, 
-                                        font=("Helevetica",20,"bold"), command=alarm)
-set_alarm_button.pack(pady=15, anchor='s')
+set_alarm_button = tk.Button(alarm_tab, text = "알람 설정", fg='Black', bg="#D4AC0D", width = 20, 
+                                     command=alarm)
+set_alarm_button.pack(anchor='s')
 
 alarm_status_label = tk.Label(alarm_tab, font = 'calibri 15 bold')
 alarm_status_label.pack(anchor='s')
